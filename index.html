@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>🎀 Sarah's Birthday! 🎀</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#ff4da6">
+<title>🎀 Sarah's 3rd Birthday! 🎀</title>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700;900&family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -21,12 +24,21 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { 
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   background: #fff0f7;
   min-height: 100vh;
   overflow-x: hidden;
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='26' font-size='24'%3E🌸%3C/text%3E%3C/svg%3E") 12 12, auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 /* ==============================
@@ -38,7 +50,8 @@ body {
   align-items: center; justify-content: center;
   background: radial-gradient(ellipse at 40% 40%, #ffc2e0 0%, #ffb3d9 40%, #ff80c0 100%);
   transition: opacity 0.9s ease, transform 0.9s ease;
-  text-align: center; padding: 20px;
+  text-align: center; 
+  padding: max(20px, 5vw);
   overflow: hidden;
 }
 #intro.bye { opacity: 0; transform: scale(1.08); pointer-events: none; }
@@ -49,6 +62,7 @@ body {
   border-radius: 50%;
   background: rgba(255,255,255,0.25);
   animation: dotPop var(--d) ease-in-out infinite alternate;
+  will-change: transform;
 }
 @keyframes dotPop {
   from { transform: scale(0.8); opacity: 0.3; }
@@ -56,47 +70,57 @@ body {
 }
 
 .intro-bow {
-  font-size: 5rem;
+  font-size: clamp(4rem, 12vw, 6rem);
   animation: bowBounce 1.4s ease-in-out infinite;
-  filter: drop-shadow(0 6px 20px rgba(255,77,166,0.4));
-  margin-bottom: 8px;
+  filter: drop-shadow(0 8px 24px rgba(255,77,166,0.5));
+  margin-bottom: clamp(8px, 3vw, 16px);
+  will-change: transform;
 }
 @keyframes bowBounce {
   0%,100% { transform: translateY(0) rotate(-6deg) scale(1); }
-  50%      { transform: translateY(-18px) rotate(6deg) scale(1.08); }
+  50%      { transform: translateY(calc(-8vw - 18px)) rotate(6deg) scale(1.12); }
 }
 
 .intro-heading {
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(2.6rem, 9vw, 5rem);
+  font-size: clamp(2.2rem, 10vw, 5rem);
   color: white;
-  text-shadow: 0 3px 16px rgba(255,77,166,0.5);
+  text-shadow: 0 4px 20px rgba(255,77,166,0.6), 0 2px 10px rgba(0,0,0,0.1);
   line-height: 1.1;
-  margin-bottom: 6px;
+  margin-bottom: clamp(6px, 2vw, 12px);
 }
 .intro-sub {
   font-family: 'Fredoka One', cursive;
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.9);
+  font-size: clamp(0.9rem, 3vw, 1.3rem);
+  color: rgba(255,255,255,0.95);
   letter-spacing: 2px;
-  margin-bottom: 36px;
+  margin-bottom: clamp(24px, 8vw, 36px);
 }
 
 .open-btn {
-  background: white;
-  border: none; border-radius: 60px;
+  background: linear-gradient(135deg, #ffffff, #fff9fc);
+  border: 3px solid rgba(255,255,255,0.8);
+  border-radius: 60px;
   color: var(--hot);
   font-family: 'Fredoka One', cursive;
-  font-size: 1.35rem;
-  padding: 16px 48px;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  padding: clamp(12px 40px, 3vw 10vw, 18px 52px);
   cursor: pointer;
-  box-shadow: 0 6px 30px rgba(255,77,166,0.35);
+  box-shadow: 0 8px 36px rgba(255,77,166,0.4), inset 0 2px 0 rgba(255,255,255,0.9);
   animation: btnPulse 1.6s ease-in-out infinite;
   letter-spacing: 0.5px;
+  font-weight: 800;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 @keyframes btnPulse {
-  0%,100% { transform: scale(1);    box-shadow: 0 6px 30px rgba(255,77,166,0.35); }
-  50%      { transform: scale(1.06); box-shadow: 0 10px 40px rgba(255,77,166,0.6); }
+  0%,100% { transform: scale(1);    box-shadow: 0 8px 36px rgba(255,77,166,0.4), inset 0 2px 0 rgba(255,255,255,0.9); }
+  50%      { transform: scale(1.08); box-shadow: 0 12px 48px rgba(255,77,166,0.7), inset 0 2px 0 rgba(255,255,255,0.9); }
+}
+
+.open-btn:active {
+  transform: scale(0.95);
 }
 
 /* ==============================
@@ -112,6 +136,7 @@ body {
     radial-gradient(ellipse 60% 60% at 100% 0%,   #e8b4f8 0%, transparent 55%),
     radial-gradient(ellipse 80% 60% at 50%  100%, #ffb3d9 0%, transparent 60%),
     #fff0f7;
+  will-change: opacity;
 }
 
 /* ==============================
@@ -124,10 +149,16 @@ body {
    BACKGROUND FLOWERS
 ============================== */
 .bg-flower {
-  position: fixed; font-size: var(--s); pointer-events:none; z-index:1;
+  position: fixed; 
+  font-size: var(--s); 
+  pointer-events:none; 
+  z-index:1;
   animation: flowerSway var(--d) ease-in-out infinite alternate;
-  animation-delay: var(--dl); opacity: 0.25;
-  top: var(--t); left: var(--l);
+  animation-delay: var(--dl); 
+  opacity: 0.22;
+  top: var(--t); 
+  left: var(--l);
+  will-change: transform;
 }
 @keyframes flowerSway {
   from { transform: rotate(var(--ra)) scale(0.9); }
@@ -140,9 +171,14 @@ body {
 .balloon {
   position: absolute; bottom: -170px;
   font-size: var(--sz);
-  cursor: pointer; pointer-events: all; user-select: none;
+  cursor: pointer; 
+  pointer-events: all; 
+  user-select: none;
   animation: floatUp var(--dur) linear forwards;
-  filter: drop-shadow(0 4px 10px rgba(255,77,166,0.25));
+  filter: drop-shadow(0 5px 12px rgba(255,77,166,0.3));
+  will-change: transform, opacity;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 @keyframes floatUp {
   0%   { bottom:-170px; opacity:0; transform:rotate(var(--tl)) translateX(0); }
@@ -152,9 +188,12 @@ body {
   100% { bottom:115vh; opacity:0; transform:rotate(var(--tl)) translateX(0); }
 }
 .pop-flash {
-  position:fixed; pointer-events:none; z-index:9990;
-  font-size:2.2rem;
+  position:fixed; 
+  pointer-events:none; 
+  z-index:9990;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   animation:flashOut 0.55s cubic-bezier(.17,.67,.3,1.33) forwards;
+  will-change: transform, opacity;
 }
 @keyframes flashOut {
   0%   { transform:scale(0) rotate(-10deg); opacity:1; }
@@ -166,9 +205,12 @@ body {
    CONFETTI
 ============================== */
 .cp {
-  position:fixed; pointer-events:none; z-index:9995;
+  position:fixed; 
+  pointer-events:none; 
+  z-index:9995;
   border-radius: var(--br);
   animation: cpFall var(--cd) var(--ce) var(--cdl) forwards;
+  will-change: transform, opacity;
 }
 @keyframes cpFall {
   0%   { transform:translate(0,0) rotate(0deg) scale(1); opacity:1; }
@@ -179,8 +221,12 @@ body {
    FIREWORKS
 ============================== */
 .fw {
-  position:fixed; border-radius:50%; pointer-events:none; z-index:9994;
+  position:fixed; 
+  border-radius:50%; 
+  pointer-events:none; 
+  z-index:9994;
   animation: fwShoot var(--fd) ease-out forwards;
+  will-change: transform, opacity;
 }
 @keyframes fwShoot {
   0%   { transform:translate(0,0) scale(1); opacity:1; }
@@ -192,25 +238,26 @@ body {
 ============================== */
 .card-wrap {
   position:relative; z-index:10;
-  max-width:460px; width:94%;
-  margin:28px auto 80px;
+  max-width:480px; width:95%;
+  margin: clamp(16px, 5vw, 28px) auto clamp(60px, 15vw, 100px);
 }
 
 .card {
   background: linear-gradient(160deg, #ffffff 0%, #fff5fa 50%, #fde8f4 100%);
-  border-radius: 38px;
+  border-radius: clamp(28px, 6vw, 42px);
   overflow: hidden;
   box-shadow:
-    0 2px 0 rgba(255,255,255,0.9) inset,
-    0 0 0 3px rgba(255,128,192,0.25),
-    0 20px 70px rgba(255,77,166,0.18),
-    0 6px 20px rgba(0,0,0,0.06);
+    0 2px 0 rgba(255,255,255,0.95) inset,
+    0 0 0 2px rgba(255,128,192,0.2),
+    0 24px 80px rgba(255,77,166,0.22),
+    0 8px 24px rgba(0,0,0,0.08);
   position: relative;
+  will-change: transform;
 }
 
 /* Rainbow top stripe */
 .stripe-top {
-  height: 10px;
+  height: clamp(8px, 2vw, 12px);
   background: linear-gradient(90deg,
     #ff80c0, #ffb347, #ffe066, #80e27e, #87d3f8, #c084fc, #ff80c0);
   background-size: 300% 100%;
@@ -226,14 +273,14 @@ body {
 ============================== */
 .header-band {
   background: linear-gradient(135deg, #ff80c0 0%, #ff4da6 60%, #e0368b 100%);
-  padding: 18px 20px 14px;
+  padding: clamp(14px 16px 10px, 3vw 4vw 2vw, 20px 24px 18px);
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 .header-band::after {
   content:'';
-  position:absolute; bottom:-1px; left:0; right:0; height:22px;
+  position:absolute; bottom:-1px; left:0; right:0; height:24px;
   background: white;
   clip-path: ellipse(55% 100% at 50% 100%);
 }
@@ -250,9 +297,9 @@ body {
 
 .header-you {
   font-family: 'Fredoka One', cursive;
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: 4px;
+  font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+  color: rgba(255,255,255,0.95);
+  letter-spacing: 3px;
   text-transform: uppercase;
   position: relative;
 }
@@ -261,7 +308,7 @@ body {
    HERO SECTION
 ============================== */
 .hero {
-  padding: 28px 20px 6px;
+  padding: clamp(20px 16px 4px, 5vw 4vw 2vw, 32px 24px 8px);
   text-align: center;
   position: relative;
 }
@@ -271,24 +318,26 @@ body {
   position: relative;
   display: inline-flex;
   align-items: flex-end;
-  gap: 4px;
-  margin-bottom: 6px;
+  gap: clamp(2px, 1vw, 8px);
+  margin-bottom: clamp(4px, 1.5vw, 8px);
 }
 .big-cake {
-  font-size: 5.5rem;
+  font-size: clamp(4rem, 14vw, 6.5rem);
   animation: cakeWobble 2.8s ease-in-out infinite;
-  filter: drop-shadow(0 4px 16px rgba(255,77,166,0.35));
+  filter: drop-shadow(0 6px 20px rgba(255,77,166,0.4));
   line-height:1;
+  will-change: transform;
 }
 @keyframes cakeWobble {
   0%,100% { transform: rotate(-4deg) scale(1); }
-  50%      { transform: rotate(4deg) scale(1.07); }
+  50%      { transform: rotate(4deg) scale(1.1); }
 }
 .side-bow {
-  font-size: 2.4rem;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   animation: bowFloat 2s ease-in-out infinite alternate;
   animation-delay: 0.4s;
-  margin-bottom: 12px;
+  margin-bottom: clamp(8px, 2vw, 14px);
+  will-change: transform;
 }
 @keyframes bowFloat {
   from { transform: translateY(0) rotate(-8deg); }
@@ -301,6 +350,7 @@ body {
   inset: -16px;
   pointer-events: none;
   animation: ringSpin 6s linear infinite;
+  will-change: transform;
 }
 .sr-dot {
   position: absolute; width: 9px; height: 9px; border-radius: 50%;
@@ -318,19 +368,19 @@ body {
 /* Sarah's name */
 .invite-whisper {
   font-family: 'Fredoka One', cursive;
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 2.2vw, 0.85rem);
   color: var(--rose);
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: 4px;
-  opacity: 0.85;
+  margin-bottom: clamp(2px, 1vw, 6px);
+  opacity: 0.9;
   animation: fadeUp 0.7s 0.2s both;
 }
 
 .sarah-name {
   font-family: 'Dancing Script', cursive;
   font-weight: 900;
-  font-size: clamp(4.2rem, 16vw, 6.5rem);
+  font-size: clamp(3.2rem, 18vw, 7rem);
   line-height: 1;
   background: linear-gradient(135deg, #ff4da6 0%, #ff80c0 35%, #e040ab 65%, #ff4da6 100%);
   background-size: 200% 200%;
@@ -338,7 +388,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: nameGlow 3s linear infinite, fadeUp 0.7s 0.35s both;
-  filter: drop-shadow(0 2px 8px rgba(255,77,166,0.3));
+  filter: drop-shadow(0 2px 10px rgba(255,77,166,0.35));
 }
 @keyframes nameGlow {
   0%   { background-position: 0% 50%; }
@@ -347,9 +397,9 @@ body {
 
 .name-tagline {
   font-family: 'Fredoka One', cursive;
-  font-size: 1rem;
+  font-size: clamp(0.85rem, 3vw, 1.2rem);
   color: #c084fc;
-  margin: 6px 0 0;
+  margin: clamp(4px, 1vw, 8px) 0 0;
   letter-spacing: 1px;
   animation: fadeUp 0.7s 0.5s both;
 }
@@ -358,7 +408,7 @@ body {
    AGE BUBBLE
 ============================== */
 .age-area {
-  padding: 14px 20px 6px;
+  padding: clamp(10px 16px 4px, 2.5vw 4vw 1vw, 16px 24px 8px);
   text-align: center;
   animation: fadeUp 0.7s 0.7s both;
 }
@@ -367,12 +417,12 @@ body {
   align-items: center;
   background: linear-gradient(135deg, #ffd6ec, #e8b4f8);
   border-radius: 60px;
-  padding: 12px 30px;
-  gap: 14px;
-  box-shadow: 0 4px 20px rgba(255,77,166,0.2), inset 0 1px 0 rgba(255,255,255,0.7);
-  border: 2px solid rgba(255,255,255,0.8);
+  padding: clamp(10px 20px, 2vw 5vw, 14px 36px);
+  gap: clamp(10px, 2vw, 16px);
+  box-shadow: 0 6px 24px rgba(255,77,166,0.25), inset 0 1px 0 rgba(255,255,255,0.8);
+  border: 2px solid rgba(255,255,255,0.85);
 }
-.age-flowers { font-size: 1.5rem; }
+.age-flowers { font-size: clamp(1.2rem, 3vw, 1.8rem); }
 .age-flowers:first-child { animation: spinCw  4s linear infinite; }
 .age-flowers:last-child  { animation: spinCcw 4s linear infinite; }
 @keyframes spinCw  { to { transform: rotate(360deg); } }
@@ -380,22 +430,23 @@ body {
 
 .age-num {
   font-family: 'Fredoka One', cursive;
-  font-size: clamp(3.5rem, 14vw, 5.5rem);
+  font-size: clamp(2.8rem, 12vw, 5.5rem);
   color: var(--hot);
   line-height: 1;
-  text-shadow: 0 3px 0 rgba(255,77,166,0.2), 0 6px 20px rgba(255,77,166,0.3);
+  text-shadow: 0 3px 0 rgba(255,77,166,0.25), 0 6px 20px rgba(255,77,166,0.35);
   animation: numBeat 1.8s ease-in-out infinite;
+  will-change: transform;
 }
 @keyframes numBeat {
   0%,100% { transform: scale(1); }
-  40%     { transform: scale(1.08); }
-  60%     { transform: scale(0.96); }
+  40%     { transform: scale(1.1); }
+  60%     { transform: scale(0.95); }
 }
 .age-years {
   font-family: 'Fredoka One', cursive;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2.5vw, 1.1rem);
   color: #b060e0;
-  line-height: 1.2;
+  line-height: 1.3;
   text-align: left;
 }
 .age-years span { display: block; }
@@ -404,8 +455,8 @@ body {
    WAVY DIVIDER
 ============================== */
 .wavy-div {
-  display: flex; align-items: center; gap: 10px;
-  margin: 16px 28px;
+  display: flex; align-items: center; gap: clamp(6px, 2vw, 12px);
+  margin: clamp(12px 20px, 3vw 5vw, 18px 32px);
   animation: fadeUp 0.7s 0.9s both;
 }
 .wavy-line {
@@ -413,78 +464,109 @@ body {
   background: linear-gradient(90deg, transparent, #ffb3d9, transparent);
   border-radius: 2px;
 }
-.wavy-icons { font-size: 1.3rem; letter-spacing: 4px; }
+.wavy-icons { font-size: clamp(1rem, 3vw, 1.5rem); letter-spacing: 3px; }
 
 /* ==============================
    DETAIL CARDS
 ============================== */
-.details { padding: 0 20px 16px; display:flex; flex-direction:column; gap:11px; }
+.details { 
+  padding: 0 clamp(16px, 4vw, 24px) clamp(12px, 3vw, 18px); 
+  display:flex; 
+  flex-direction:column; 
+  gap: clamp(8px, 2vw, 13px); 
+}
 
 .dcard {
-  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,214,236,0.4));
-  border: 1.5px solid rgba(255,128,192,0.25);
-  border-radius: 22px;
-  padding: 15px 20px;
-  display: flex; align-items: center; gap: 16px;
-  box-shadow: 0 3px 16px rgba(255,77,166,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,214,236,0.5));
+  border: 1.5px solid rgba(255,128,192,0.28);
+  border-radius: clamp(18px, 4vw, 26px);
+  padding: clamp(12px 16px, 2.5vw 4vw, 18px 24px);
+  display: flex; 
+  align-items: center; 
+  gap: clamp(12px, 3vw, 18px);
+  box-shadow: 0 4px 18px rgba(255,77,166,0.12), inset 0 1px 0 rgba(255,255,255,0.95);
   animation: fadeUp 0.7s both;
-  transition: transform 0.25s, box-shadow 0.25s;
-  cursor: default;
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.320, 1), box-shadow 0.25s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .dcard:hover {
-  transform: translateY(-4px) rotate(-0.5deg);
-  box-shadow: 0 10px 30px rgba(255,77,166,0.2);
+  transform: translateY(-5px) rotate(-0.3deg);
+  box-shadow: 0 12px 32px rgba(255,77,166,0.25), inset 0 1px 0 rgba(255,255,255,0.95);
+}
+.dcard:active {
+  transform: scale(0.98) translateY(-2px);
 }
 .dcard:nth-child(1){ animation-delay:1.0s; }
 .dcard:nth-child(2){ animation-delay:1.15s; }
 .dcard:nth-child(3){ animation-delay:1.3s; }
 
 .dcard-icon {
-  width: 54px; height: 54px; border-radius: 50%;
+  width: clamp(48px, 11vw, 62px); 
+  height: clamp(48px, 11vw, 62px); 
+  border-radius: 50%;
   background: linear-gradient(135deg, #ffb3d9, #ff80c0);
-  display: flex; align-items:center; justify-content:center;
-  font-size: 1.8rem; flex-shrink:0;
-  box-shadow: 0 4px 14px rgba(255,77,166,0.3);
+  display: flex; 
+  align-items:center; 
+  justify-content:center;
+  font-size: clamp(1.4rem, 4vw, 2.2rem); 
+  flex-shrink:0;
+  box-shadow: 0 5px 16px rgba(255,77,166,0.35), inset 0 1px 2px rgba(255,255,255,0.6);
 }
 .dcard-body { flex:1; }
 .dcard-label {
-  font-size: 0.62rem; font-weight: 800; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--rose); margin-bottom: 3px;
+  font-size: clamp(0.55rem, 2vw, 0.75rem); 
+  font-weight: 800; 
+  letter-spacing: 2.5px;
+  text-transform: uppercase; 
+  color: var(--rose); 
+  margin-bottom: clamp(2px, 0.5vw, 4px);
 }
 .dcard-val {
-  font-size: 1.05rem; font-weight: 800; color: #4a1060; line-height: 1.3;
+  font-size: clamp(0.95rem, 3vw, 1.25rem); 
+  font-weight: 800; 
+  color: #4a1060; 
+  line-height: 1.3;
+  word-break: break-word;
 }
 .dcard-val .hi {
   background: linear-gradient(135deg, var(--hot), #c084fc);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  -webkit-background-clip:text; 
+  -webkit-text-fill-color:transparent; 
+  background-clip:text;
 }
 
 /* ==============================
    CUTE MESSAGE
 ============================== */
 .cute-msg {
-  text-align:center; padding: 8px 26px 18px;
+  text-align:center; 
+  padding: clamp(6px 20px 12px, 1.5vw 5vw 3vw, 10px 32px 20px);
   animation: fadeUp 0.7s 1.5s both;
 }
 .cute-msg-text {
   font-family: 'Dancing Script', cursive;
-  font-size: 1.65rem;
+  font-size: clamp(1.3rem, 4.5vw, 2rem);
   color: #d0408a;
-  line-height: 1.5;
-  filter: drop-shadow(0 1px 6px rgba(208,64,138,0.2));
+  line-height: 1.6;
+  filter: drop-shadow(0 2px 8px rgba(208,64,138,0.25));
 }
 
 /* ==============================
    RSVP BUTTON
 ============================== */
 .rsvp-area {
-  padding: 6px 24px 26px;
+  padding: clamp(4px 20px 20px, 1vw 5vw 5vw, 8px 32px 32px);
   text-align: center;
   animation: fadeUp 0.7s 1.7s both;
 }
 .rsvp-hint {
-  font-size: 0.78rem; font-weight: 800;
-  color: var(--rose); letter-spacing: 2px; margin-bottom: 12px;
+  font-size: clamp(0.7rem, 2.2vw, 0.9rem); 
+  font-weight: 800;
+  color: var(--rose); 
+  letter-spacing: 2px; 
+  margin-bottom: clamp(8px, 2vw, 14px);
   font-family: 'Fredoka One', cursive;
 }
 .rsvp-btn {
@@ -493,49 +575,66 @@ body {
   background-size: 200% 200%;
   color: white;
   font-family: 'Fredoka One', cursive;
-  font-size: 1.2rem;
-  border: none; border-radius: 60px;
-  padding: 16px 48px;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+  border: none; 
+  border-radius: 60px;
+  padding: clamp(13px 36px, 2.5vw 8vw, 18px 56px);
   cursor: pointer;
-  box-shadow: 0 5px 28px rgba(255,77,166,0.45), inset 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 6px 32px rgba(255,77,166,0.5), inset 0 1px 0 rgba(255,255,255,0.35);
   animation: btnPop 2s ease-in-out infinite, btnMove 3s linear infinite;
-  position: relative; overflow: hidden;
-  transition: transform 0.15s;
+  position: relative; 
+  overflow: hidden;
+  transition: transform 0.15s cubic-bezier(0.23, 1, 0.320, 1);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  will-change: transform, box-shadow;
 }
 @keyframes btnPop  {
-  0%,100%{ box-shadow:0 5px 28px rgba(255,77,166,0.45); }
-  50%    { box-shadow:0 8px 40px rgba(255,77,166,0.75), 0 0 60px rgba(192,132,252,0.3); }
+  0%,100%{ box-shadow:0 6px 32px rgba(255,77,166,0.5), inset 0 1px 0 rgba(255,255,255,0.35); }
+  50%    { box-shadow:0 10px 48px rgba(255,77,166,0.8), 0 0 60px rgba(192,132,252,0.4), inset 0 1px 0 rgba(255,255,255,0.35); }
 }
 @keyframes btnMove { 0%{ background-position:0% 50%;} 100%{ background-position:200% 50%;} }
 .rsvp-btn::after {
-  content:''; position:absolute; inset:0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  content:''; 
+  position:absolute; 
+  inset:0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent);
   transform: skewX(-20deg) translateX(-120%);
   animation: btnShine 2.2s ease-in-out infinite;
 }
 @keyframes btnShine { 0%{transform:skewX(-20deg) translateX(-120%);} 100%{transform:skewX(-20deg) translateX(250%);} }
-.rsvp-btn:hover { transform: scale(1.06) translateY(-3px); }
-.rsvp-btn:active { transform: scale(0.97); }
+.rsvp-btn:hover { transform: scale(1.08) translateY(-4px); }
+.rsvp-btn:active { transform: scale(0.95); }
 
 /* ==============================
    BOTTOM STRIP
 ============================== */
 .bottom-strip {
   background: linear-gradient(135deg, #ff80c0, #ff4da6);
-  padding: 14px 10px;
+  padding: clamp(10px 8px, 2vw 3vw, 16px 14px);
   text-align: center;
-  position: relative; overflow: hidden;
+  position: relative; 
+  overflow: hidden;
 }
 .bottom-strip::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:18px;
+  content:''; 
+  position:absolute; 
+  top:0; 
+  left:0; 
+  right:0; 
+  height: clamp(16px, 3vw, 22px);
   background: white;
   clip-path: ellipse(55% 100% at 50% 0%);
 }
 .bottom-emojis {
-  font-size: 1.5rem; letter-spacing: 5px;
+  font-size: clamp(1.2rem, 4vw, 2rem); 
+  letter-spacing: clamp(3px, 1vw, 8px);
   display:inline-block;
   animation: emojiDance 3s ease-in-out infinite;
-  position:relative; z-index:1;
+  position:relative; 
+  z-index:1;
 }
 @keyframes emojiDance {
   0%,100%{ transform:translateY(0) rotate(0deg); }
@@ -551,24 +650,38 @@ body {
   background: linear-gradient(90deg, #ff4da6, #ff80c0, #c084fc, #ff80c0, #ff4da6);
   background-size: 300% 100%;
   animation: tickerBg 5s linear infinite;
-  padding: 7px 0; overflow:hidden;
+  padding: clamp(5px, 1.5vw, 9px) 0; 
+  overflow:hidden;
+  box-shadow: 0 -4px 12px rgba(255,77,166,0.3);
 }
 @keyframes tickerBg{ 0%{ background-position:0% 0;} 100%{ background-position:300% 0;} }
-.ticker-inner { display:flex; gap:30px; animation:scrollTick 22s linear infinite; white-space:nowrap; }
+.ticker-inner { 
+  display:flex; 
+  gap: clamp(20px, 5vw, 40px); 
+  animation:scrollTick 24s linear infinite; 
+  white-space:nowrap; 
+}
 @keyframes scrollTick{ 0%{ transform:translateX(0);} 100%{ transform:translateX(-50%);} }
 .tick-item {
-  color:white; font-family:'Fredoka One',cursive;
-  font-size:0.72rem; letter-spacing:2px; flex-shrink:0;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  color:white; 
+  font-family:'Fredoka One',cursive;
+  font-size: clamp(0.6rem, 2vw, 0.85rem); 
+  letter-spacing: 1.5px; 
+  flex-shrink:0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  font-weight: 700;
 }
 
 /* ==============================
    SPARKLE CLICK
 ============================== */
 .click-spark {
-  position:fixed; pointer-events:none; z-index:9993;
+  position:fixed; 
+  pointer-events:none; 
+  z-index:9993;
   font-size:var(--fs);
   animation:clickFly 0.9s ease-out forwards;
+  will-change: transform, opacity;
 }
 @keyframes clickFly{
   0%  { transform:translate(0,0) scale(0) rotate(0deg); opacity:1; }
@@ -580,16 +693,39 @@ body {
    FLOATING BITS (bg)
 ============================== */
 .float-bit {
-  position:fixed; z-index:2; pointer-events:none;
-  font-size:var(--fs2); opacity:var(--op);
+  position:fixed; 
+  z-index:2; 
+  pointer-events:none;
+  font-size:var(--fs2); 
+  opacity:var(--op);
   animation:bitDrift var(--bd) ease-in-out var(--bdl) infinite alternate;
+  will-change: transform;
 }
 @keyframes bitDrift{
   from{ transform:translate(0,0) rotate(var(--bra)); opacity:var(--op); }
-  to  { transform:translate(var(--bx),var(--by)) rotate(var(--brb)); opacity:calc(var(--op)*1.6); }
+  to  { transform:translate(var(--bx),var(--by)) rotate(var(--brb)); opacity:calc(var(--op)*1.8); }
 }
 
-@keyframes fadeUp{ from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+@keyframes fadeUp{ 
+  from{ opacity:0; transform:translateY(22px); } 
+  to{ opacity:1; transform:translateY(0); } 
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  body { 
+    -webkit-text-size-adjust: 100%;
+    -webkit-user-select: none;
+  }
+  
+  input, textarea, select, button { 
+    font-size: 16px !important;
+  }
+  
+  .balloon {
+    font-size: 1.8rem;
+  }
+}
 </style>
 </head>
 <body>
